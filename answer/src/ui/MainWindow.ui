@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1067</width>
+    <height>859</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Vacuum Control</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QFrame" name="frame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QGroupBox" name="simulatorGroup">
+             <property name="title">
+              <string>Simulator</string>
+             </property>
+             <layout class="QGridLayout" name="simulatorLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="hostTitle">
+                <property name="text">
+                 <string>Host</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="hostEdit">
+                <property name="text">
+                 <string>localhost</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="connectButton">
+                <property name="text">
+                 <string>Connect</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="3">
+               <widget class="QLabel" name="connectionLabel">
+                <property name="text">
+                 <string>Not connected</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="sceneGroup">
+             <property name="title">
+              <string>Scene</string>
+             </property>
+             <layout class="QGridLayout" name="sceneLayout">
+              <item row="2" column="2">
+               <widget class="QPushButton" name="resetButton">
+                <property name="toolTip">
+                 <string>Reset the current scene (new start pose)</string>
+                </property>
+                <property name="text">
+                 <string>Reset</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="sceneTitle">
+                <property name="text">
+                 <string>Scene</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="2">
+               <widget class="QComboBox" name="sceneCombo"/>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QPushButton" name="loadSceneButton">
+                <property name="toolTip">
+                 <string>Load the selected scene (new start pose)</string>
+                </property>
+                <property name="text">
+                 <string>Load scene</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="useSeedCheck">
+                <property name="toolTip">
+                 <string>Use a fixed seed for a repeatable start pose</string>
+                </property>
+                <property name="text">
+                 <string>Seed</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QSpinBox" name="seedSpin">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>2147483647</number>
+                </property>
+                <property name="value">
+                 <number>42</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QFrame" name="frame_2">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QGroupBox" name="goalsGroup">
+             <property name="title">
+              <string>Goals</string>
+             </property>
+             <layout class="QVBoxLayout" name="goalsLayout">
+              <item>
+               <widget class="QListWidget" name="goalList">
+                <property name="alternatingRowColors">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="gotoGoalButton">
+                <property name="text">
+                 <string>GO</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="manualGOTOGroup">
+             <property name="title">
+              <string>Manually GOTO</string>
+             </property>
+             <layout class="QVBoxLayout" name="manualLayout">
+              <item>
+               <layout class="QGridLayout" name="drivePadLayout">
+                <item row="0" column="1">
+                 <widget class="QPushButton" name="forwardButton">
+                  <property name="toolTip">
+                   <string>Drive forward while held</string>
+                  </property>
+                  <property name="text">
+                   <string>▲</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QPushButton" name="leftButton">
+                  <property name="toolTip">
+                   <string>Turn left while held</string>
+                  </property>
+                  <property name="text">
+                   <string>◀</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="stopButton">
+                  <property name="toolTip">
+                   <string>Stop the robot and cancel navigation (Esc)</string>
+                  </property>
+                  <property name="text">
+                   <string>Stop</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QPushButton" name="rightButton">
+                  <property name="toolTip">
+                   <string>Turn right while held</string>
+                  </property>
+                  <property name="text">
+                   <string>▶</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QPushButton" name="backwardButton">
+                  <property name="toolTip">
+                   <string>Drive backward while held</string>
+                  </property>
+                  <property name="text">
+                   <string>▼</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QFormLayout" name="driveSpeedLayout">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="linearSpeedTitle">
+                  <property name="text">
+                   <string>Speed</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QDoubleSpinBox" name="linearSpeedSpin">
+                  <property name="suffix">
+                   <string> m/s</string>
+                  </property>
+                  <property name="decimals">
+                   <number>2</number>
+                  </property>
+                  <property name="minimum">
+                   <double>0.020000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>0.350000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.050000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>0.200000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="angularSpeedTitle">
+                  <property name="text">
+                   <string>Turn rate</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QDoubleSpinBox" name="angularSpeedSpin">
+                  <property name="suffix">
+                   <string> rad/s</string>
+                  </property>
+                  <property name="decimals">
+                   <number>2</number>
+                  </property>
+                  <property name="minimum">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>2.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="Line" name="manualSeparator">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QGridLayout" name="targetLayout">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="targetXTitle">
+                  <property name="text">
+                   <string>x</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QDoubleSpinBox" name="targetXSpin">
+                  <property name="suffix">
+                   <string> m</string>
+                  </property>
+                  <property name="decimals">
+                   <number>2</number>
+                  </property>
+                  <property name="minimum">
+                   <double>-50.000000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>50.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.050000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="targetYTitle">
+                  <property name="text">
+                   <string>y</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <widget class="QDoubleSpinBox" name="targetYSpin">
+                  <property name="suffix">
+                   <string> m</string>
+                  </property>
+                  <property name="decimals">
+                   <number>2</number>
+                  </property>
+                  <property name="minimum">
+                   <double>-50.000000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>50.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.050000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="2">
+                 <widget class="QCheckBox" name="useTargetYawCheck">
+                  <property name="text">
+                   <string>Yaw</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2" colspan="2">
+                 <widget class="QDoubleSpinBox" name="targetYawSpin">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="suffix">
+                   <string>°</string>
+                  </property>
+                  <property name="decimals">
+                   <number>1</number>
+                  </property>
+                  <property name="minimum">
+                   <double>-180.000000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>180.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>15.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0" colspan="4">
+                 <widget class="QPushButton" name="gotoPoseButton">
+                  <property name="toolTip">
+                   <string>Plan a path to this pose and drive there</string>
+                  </property>
+                  <property name="text">
+                   <string>Go to pose</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0" colspan="4">
+                 <widget class="QLabel" name="targetHint">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="text">
+                   <string>Tip: right-click the map to pick x, y; right-drag to also set the yaw</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="robotGroup">
+             <property name="title">
+              <string>Robot</string>
+             </property>
+             <layout class="QFormLayout" name="robotLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="timeTitle">
+                <property name="text">
+                 <string>Sim time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="timeValue">
+                <property name="text">
+                 <string>–</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="poseTitle">
+                <property name="text">
+                 <string>Pose</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="poseValue">
+                <property name="text">
+                 <string>–</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="ticksTitle">
+                <property name="text">
+                 <string>Wheel ticks</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="ticksValue">
+                <property name="text">
+                 <string>–</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="bumperTitle">
+                <property name="text">
+                 <string>Bumper</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="bumperValue">
+                <property name="text">
+                 <string>–</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="streamTitle">
+                <property name="text">
+                 <string>State stream</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="streamValue">
+                <property name="text">
+                 <string>–</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="navTitle">
+                <property name="text">
+                 <string>Navigation</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="navValue">
+                <property name="text">
+                 <string>Idle</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="recordingGroup">
+             <property name="title">
+              <string>Camera recording</string>
+             </property>
+             <layout class="QGridLayout" name="recordingLayout">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="startRecordingButton">
+                <property name="toolTip">
+                 <string>Record the RGBD camera: video, every frame, timestamps, robot poses and camera calibration</string>
+                </property>
+                <property name="text">
+                 <string>● Start recording</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="stopRecordingButton">
+                <property name="toolTip">
+                 <string>Stop recording and finish the files</string>
+                </property>
+                <property name="text">
+                 <string>■ Stop recording</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QLabel" name="recordingStatusLabel">
+                <property name="text">
+                 <string>Not recording</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::TextSelectableByMouse</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QPushButton" name="openRecordingFolderButton">
+                <property name="text">
+                 <string>Open recordings folder</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="SceneViewWidget" name="sceneView" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SceneViewWidget</class>
+   <extends>QWidget</extends>
+   <header>SceneViewWidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>useTargetYawCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>targetYawSpin</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useSeedCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>seedSpin</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

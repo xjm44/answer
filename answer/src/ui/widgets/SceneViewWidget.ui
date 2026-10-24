@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SceneViewWidget</class>
+ <widget class="QWidget" name="SceneViewWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing">
+    <number>4</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="toolbarLayout">
+     <item>
+      <widget class="QPushButton" name="fitButton">
+       <property name="toolTip">
+        <string>Fit the whole map into the view</string>
+       </property>
+       <property name="text">
+        <string>Fit map</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="followCheck">
+       <property name="toolTip">
+        <string>Keep the robot centred in the view</string>
+       </property>
+       <property name="text">
+        <string>Follow robot</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="trailCheck">
+       <property name="text">
+        <string>Show trail</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="rawPoseCheck">
+       <property name="toolTip">
+        <string>Show the noisy pose from the state stream (red dot) next to the filtered estimate</string>
+       </property>
+       <property name="text">
+        <string>Raw pose</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="costOverlayCheck">
+       <property name="toolTip">
+        <string>Red: the robot centre cannot go there. Orange: allowed, but the planner avoids it (close to obstacles)</string>
+       </property>
+       <property name="text">
+        <string>No-go zone</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearTrailButton">
+       <property name="text">
+        <string>Clear trail</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="toolbarSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="cursorLabel">
+       <property name="minimumSize">
+        <size>
+         <width>180</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="MapView" name="mapView"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MapView</class>
+   <extends>QGraphicsView</extends>
+   <header>MapView.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
